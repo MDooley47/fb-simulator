@@ -25,6 +25,8 @@ def gen_from_graph_api_json(file_name, state_size=2):
             pass
 
     models, weights = map(list, zip(*models_weights))
+    models_weights = None
+
     markov_novel.Novel(
         markovify.combine(models, weights), chapter_count=1
     ).write(novel_title=file_name, filetype='md')
