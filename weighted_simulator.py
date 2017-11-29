@@ -1,4 +1,4 @@
-"""Facebook Markov Simulator"""
+"""FB Markov Simulator"""
 
 import json
 import sys
@@ -15,15 +15,12 @@ def gen_from_graph_api_json(file_name, state_size=2):
     for post in json.load(open(file_name + '.json', encoding='utf-8'))['feed']['data']:
         try:
             if 'message' in post and 'count' in post['likes']:
-                try:
-                    models_weights.append(
-                        (
-                            markovify.NewlineText(post['message'], state_size),
-                            post['likes']['count']
-                            )
+                models_weights.append(
+                    (
+                        markovify.NewlineText(post['message'], state_size),
+                        post['likes']['count']
                         )
-                except KeyError:
-                    pass
+                    )
         except KeyError:
             pass
 
