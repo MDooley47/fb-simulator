@@ -19,8 +19,8 @@ def gen_from_graph_api_json(file_name, state_size=2):
                     (
                         markovify.NewlineText(post['message'], state_size),
                         post['likes']['count']
-                        )
                     )
+                )
         except KeyError:
             pass
 
