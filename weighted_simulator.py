@@ -31,4 +31,4 @@ def gen_from_graph_api_json(file_name, state_size=2):
     ).write(novel_title=file_name, filetype='md')
 
 if __name__ == '__main__':
-    gen_from_graph_api_json(sys.argv[1])
+    gen_from_graph_api_json(file_name=sys.argv[1])
