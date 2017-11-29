@@ -8,7 +8,6 @@ import markov_novel
 def gen_from_graph_api_json(file_name, state_size=2):
     """
     Generates novel from Graph API result file
-    You curl it using `/[id]/`
     """
 
     models_weights = []
