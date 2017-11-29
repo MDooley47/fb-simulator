@@ -24,8 +24,7 @@ def gen_from_graph_api_json(file_name, state_size=2):
         except KeyError:
             pass
 
-    models, weights = map(list, zip(*models_weights))
-    models_weights = None
+    (models, weights), models_weights = (map(list, zip(*models_weights)), None)
 
     markov_novel.Novel(
         markovify.combine(models, weights), chapter_count=1
