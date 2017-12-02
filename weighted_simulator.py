@@ -5,7 +5,7 @@ import sys
 import markovify
 import markov_novel
 
-def gen_from_graph_api_json(file_name, state_size=2):
+def gen_from_graph_api_json(file_name, state_size=2, chapter_count=3):
     """
     Generates novel from Graph API result file
     """
@@ -28,7 +28,7 @@ def gen_from_graph_api_json(file_name, state_size=2):
     (models, weights), models_weights = (map(list, zip(*models_weights)), None)
 
     markov_novel.Novel(
-        markovify.combine(models, weights), chapter_count=3
+        markovify.combine(models, weights), chapter_count
     ).write(novel_title=file_name, filetype='md')
 
 if __name__ == '__main__':
