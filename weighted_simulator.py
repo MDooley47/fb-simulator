@@ -17,7 +17,7 @@ def gen_from_graph_api_json(file_name, state_size=2):
             if 'message' in post and 'count' in post['likes']:
                 models_weights.append(
                     (
-                        markovify.NewlineText(post['message'], state_size),
+                        markovify.Text(post['message'], state_size),
                         post['likes']['count']
                     )
                 )
