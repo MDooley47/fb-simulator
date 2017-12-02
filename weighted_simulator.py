@@ -21,6 +21,7 @@ def gen_from_graph_api_json(file_name, state_size=2):
                         post['likes']['count']
                     )
                 )
+
         except KeyError:
             pass
 
