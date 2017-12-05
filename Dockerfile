@@ -6,6 +6,6 @@ COPY . /root/
 
 RUN pip install -r ./requirements.txt
 
-ENTRYPOINT ["python", "./weighted_simulator.py"]
+ENTRYPOINT ["python", "./main.py"]
 
-CMD ["./example"]
+CMD ["SlackHQ"]
