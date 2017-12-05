@@ -1,4 +1,6 @@
-"""FB Markov Simulator"""
+"""FB Markov Simulator
+    Twitter Bot Version
+"""
 
 import json
 import sys
@@ -31,5 +33,29 @@ def gen_from_graph_api_json(file_name, state_size=2, chapter_count=3):
         markovify.combine(models, weights), chapter_count
     ).write(novel_title=file_name, filetype='md')
 
-if __name__ == '__main__':
-    gen_from_graph_api_json(file_name=sys.argv[1])
+def gen_from_twitter_api_json(file_name, state_size=2, chapter_count=1):
+    """
+    Generates Tweets from Twitter API result file
+    """
+
+    models_weights = []
+
+    for post in json.load(open(file_name + '.json', encoding='utf-8')):
+        post = json.loads(post)
+        try:
+            if 'text' in post and 'favorite_count' in post:
+                models_weights.append(
+                    (
+                        markovify.Text(post['text'], state_size),
+                        post['favorite_count']
+                    )
+                )
+
+        except KeyError:
+            pass
+
+    (models, weights), models_weights = (map(list, zip(*models_weights)), None)
+
+    markov_novel.Novel(
+        markovify.combine(models, weights), chapter_count
+    ).write(novel_title='tweet_{0}'.format(file_name), filetype='txt')
